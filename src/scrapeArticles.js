@@ -1,3 +1,5 @@
+const { basename } = require('path')
+
 const fs = require('fs').promises
 
 async function doRequest(url){
@@ -25,6 +27,7 @@ async function paginate(url,type){
 }
 
 async function main(){
+    console.log(__dirname)
     /* initliaze variables */
     let normalArticles; 
     let devArticles;
