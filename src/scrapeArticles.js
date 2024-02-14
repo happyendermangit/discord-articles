@@ -56,27 +56,27 @@ async function main(){
 
 
     console.log('[SAVER] Saving all articles')
-    await fs.writeFile("../normal_articles.json",JSON.stringify(normalArticles,null,4),{encoding:"utf-8"})
-    await fs.writeFile("../dev_articles.json",JSON.stringify(devArticles,null,4),{encoding:"utf-8"})
-    await fs.writeFile("../creators_articles.json",JSON.stringify(creatorsArticles,null,4),{encoding:"utf-8"})
+    await fs.writeFile(".\\normal_articles.json",JSON.stringify(normalArticles,null,4),{encoding:"utf-8"})
+    await fs.writeFile(".\\dev_articles.json",JSON.stringify(devArticles,null,4),{encoding:"utf-8"})
+    await fs.writeFile(".\\creators_articles.json",JSON.stringify(creatorsArticles,null,4),{encoding:"utf-8"})
 
     for (let article of normalArticles){
         let sectionName = normalArticlesSections.find(e=>e.id === article.section_id).name
         console.log(article.title)
-        try { await fs.mkdir(`../normal_articles/${sectionName}/`) } catch {}
-        await fs.writeFile(`../normal_articles/${sectionName}/${article.title}.md`,article.body,{encoding:"utf-8"})
+        try { await fs.mkdir(`.\\normal_articles\\${sectionName}`) } catch { }
+        await fs.writeFile(`.\\normal_articles\\${sectionName}/${article.title}.md`,article.body,{encoding:"utf-8"})
     }
     
     for (let article of devArticles){
         let sectionName = devArticlesSections.find(e=>e.id === article.section_id).name
-        try { await fs.mkdir(`../dev_articles/${sectionName}/`) } catch { }
-        await fs.writeFile(`../dev_articles/${sectionName}/${article.title}.md`,article.body,{encoding:"utf-8"})
+        try { await fs.mkdir(`.\\dev_articles\\${sectionName}`) } catch { }
+        await fs.writeFile(`.\\dev_articles\\${sectionName}/${article.title}.md`,article.body,{encoding:"utf-8"})
     }
 
     for (let article of creatorsArticles){
         let sectionName = creatorsArticlesSections.find(e=>e.id === article.section_id).name
-        try { await fs.mkdir(`../creator_articles/${sectionName}/`) } catch {}
-        await fs.writeFile(`../creator_articles/${sectionName}/${article.title}.md`,article.body,{encoding:"utf-8"})
+        try { await fs.mkdir(`.\\creator_articles\\${sectionName}/`) } catch {}
+        await fs.writeFile(`./creator_articles\\${sectionName}/${article.title}.md`,article.body,{encoding:"utf-8"})
     }
     
     
