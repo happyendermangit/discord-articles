@@ -66,22 +66,19 @@ async function main(){
         console.log(sectionName)
         console.log(path.dirname(`./normal_articles\\${sectionName}\\${article.title}.md`))
         try { await fs.mkdir(`./normal_articles\\${sectionName.replaceAll("/","&")}`) } catch {}
-        try { await fs.mkdir(path.dirname(`./normal_articles\\${sectionName.replaceAll("/","&")}\\${article.title}.md`)) } catch {}
-        await fs.writeFile(`.\\normal_articles\\${sectionName.replaceAll("/","&")}\\${article.title}.md`,article.body,{encoding:"utf-8"})
+        await fs.writeFile(`.\\normal_articles\\${sectionName.replaceAll("/","&")}\\${article.title.replaceAll("/","&")}.md`,article.body,{encoding:"utf-8"})
     }
     
     for (let article of devArticles){
         let sectionName = devArticlesSections.find(e=>e.id === article.section_id).name
         try { await fs.mkdir(`./dev_articles\\${sectionName.replaceAll("/","&")}`) } catch {}
-        try { await fs.mkdir(path.dirname(`./dev_articles\\${sectionName.replaceAll("/","&")}\\${article.title}.md`)) } catch {}
-        await fs.writeFile(`.\\dev_articles\\${sectionName.replaceAll("/","&")}\\${article.title}.md`,article.body,{encoding:"utf-8"})
+        await fs.writeFile(`.\\dev_articles\\${sectionName.replaceAll("/","&")}\\${article.title.replaceAll("/","&")}.md`,article.body,{encoding:"utf-8"})
     }
 
     for (let article of creatorsArticles){
         let sectionName = creatorsArticlesSections.find(e=>e.id === article.section_id).name
         try { await fs.mkdir(`./creator_articles\\${sectionName.replaceAll("/","&")}`) } catch {}
-        try { await fs.mkdir(path.dirname(`./creator_articles\\${sectionName.replaceAll("/","&")}\\${article.title}.md`)) } catch {}
-        await fs.writeFile(`./creator_articles\\${sectionName.replaceAll("/","&")}\\${article.title}.md`,article.body,{encoding:"utf-8"})
+        await fs.writeFile(`./creator_articles\\${sectionName.replaceAll("/","&")}\\${article.title.replaceAll("/","&")}.md`,article.body,{encoding:"utf-8"})
     }
     
     
