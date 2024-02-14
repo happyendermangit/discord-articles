@@ -63,19 +63,19 @@ async function main(){
     for (let article of normalArticles){
         let sectionName = normalArticlesSections.find(e=>e.id === article.section_id).name
         console.log(article.title)
-        try { await fs.mkdir(`.\\normal_articles\\${sectionName}`) } catch { }
+        try { await fs.mkdir(path.dirname(`./normal_articles\\${sectionName}\\${article.title}.md`)) } catch {}
         await fs.writeFile(`.\\normal_articles\\${sectionName}\\${article.title}.md`,article.body,{encoding:"utf-8"})
     }
     
     for (let article of devArticles){
         let sectionName = devArticlesSections.find(e=>e.id === article.section_id).name
-        try { await fs.mkdir(`.\\dev_articles\\${sectionName}`) } catch { }
+        try { await fs.mkdir(path.dirname(`./dev_articles\\${sectionName}\\${article.title}.md`)) } catch {}
         await fs.writeFile(`.\\dev_articles\\${sectionName}\\${article.title}.md`,article.body,{encoding:"utf-8"})
     }
 
     for (let article of creatorsArticles){
         let sectionName = creatorsArticlesSections.find(e=>e.id === article.section_id).name
-        try { await fs.mkdir(`.\\creator_articles\\${sectionName}/`) } catch {}
+        try { await fs.mkdir(path.dirname(`./creator_articles\\${sectionName}\\${article.title}.md`)) } catch {}
         await fs.writeFile(`./creator_articles\\${sectionName}\\${article.title}.md`,article.body,{encoding:"utf-8"})
     }
     
